@@ -16,7 +16,7 @@
   let c3 = 3;
   let m3 = 3;
 
-  let resolution = 200;
+  let resolution = 250;
 
   $: springs = [
     { k: k1, c: c1, m: m1, color: "blue" },
@@ -56,7 +56,7 @@
   }
   .right {
     grid-area: 1 / 5 / 6 / 6;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -97,17 +97,35 @@
   </div>
   <div class="right">
     Stiffness
-    <Slider bind:value={k1} />
-    <Slider bind:value={k2} />
-    <Slider bind:value={k3} />
+    <div class="blue">
+      <Slider bind:value={k1} />
+    </div>
+    <div class="red">
+      <Slider bind:value={k2} />
+    </div>
+    <div class="green">
+      <Slider bind:value={k3} />
+    </div>
     Damping Ratio
-    <Slider bind:value={c1} />
-    <Slider bind:value={c2} />
-    <Slider bind:value={c3} />
+    <div class="blue">
+      <Slider bind:value={c1} />
+    </div>
+    <div class="red">
+      <Slider bind:value={c2} />
+    </div>
+    <div class="green">
+      <Slider bind:value={c3} />
+    </div>
     Mass
-    <Slider bind:value={m1} />
-    <Slider bind:value={m2} />
-    <Slider bind:value={m3} />
+    <div class="blue">
+      <Slider bind:value={m1} />
+    </div>
+    <div class="red">
+      <Slider bind:value={m2} />
+    </div>
+    <div class="green">
+      <Slider bind:value={m3} />
+    </div>
   </div>
   <div class="left">
     Resolution

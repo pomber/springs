@@ -5,7 +5,7 @@
   export let c = 13;
   export let m = 2;
   export let color = "red";
-  export let resolution = 200;
+  export let resolution;
 
   $: ts = Array(resolution + 1)
     .fill(0)

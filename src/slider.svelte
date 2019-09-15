@@ -3,14 +3,35 @@
   export let max = 100;
   export let log = false;
   export let value = 1;
+
+  import { onMount } from "svelte";
+  import noUiSlider from "nouislider";
+
+  let element;
+
+  onMount(() => {
+    noUiSlider.create(element, {
+      start: value,
+      connect: [true, false],
+      step: 1,
+      range: {
+        min,
+        max
+      }
+    });
+
+    element.noUiSlider.on("update", function() {
+      value = +element.noUiSlider.get();
+    });
+  });
 </script>
 
 <style>
-  div {
+  .container {
     width: 100%;
     display: flex;
   }
-  input {
+  .slider {
     flex: 1;
   }
   span {
@@ -19,7 +40,7 @@
   }
 </style>
 
-<div>
-  <input type="range" bind:value {min} {max} />
+<div class="container">
+  <div class="slider" bind:this={element} />
   <span>{value}</span>
 </div>

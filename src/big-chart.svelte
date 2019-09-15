@@ -15,7 +15,7 @@
   }
   circle {
     fill: #fafafa;
-    opacity: 0.06;
+    opacity: 0.1;
   }
 </style>
 
