@@ -3,9 +3,21 @@
   import { range } from "./range";
   export let springs;
   export let resolution;
-  const xs = range(0, 8, 0.25);
-  const ys = range(-1, 1, 0.25);
+  export let x0 = 1;
+  export let maxt = 6;
+
+  const w = 6;
+  const h = 1;
+
+  $: maxx = Math.max(x0, 1);
+  $: ys = range(-maxx, maxx, 0.25);
+
+  $: xs = range(0, maxt, 0.25);
   const dc = 0.03;
+  $: scaleX = h / maxx;
+  $: scaleT = w / maxt;
+
+  $: viewbox = `${-0.2} ${-h - 0.2} ${w + 0.4} ${2 * h + 0.4}`;
 </script>
 
 <style>
@@ -19,13 +31,13 @@
   }
 </style>
 
-<svg viewBox="-0.2 -1.2 6.4 2.4" width="100%">
+<svg viewBox={viewbox} width="100%">
   {#each xs as x}
     {#each ys as y}
-      <circle cx={x} cy={y} r="0.015" />
+      <circle cx={x * scaleT} cy={y * scaleX} r="0.015" />
     {/each}
   {/each}
-  <Spring {...springs[0]} {resolution} />
-  <Spring {...springs[1]} {resolution} />
-  <Spring {...springs[2]} {resolution} />
+  <Spring {...springs[0]} {resolution} {x0} {scaleX} {maxt} {scaleT} />
+  <Spring {...springs[1]} {resolution} {x0} {scaleX} {maxt} {scaleT} />
+  <Spring {...springs[2]} {resolution} {x0} {scaleX} {maxt} {scaleT} />
 </svg>

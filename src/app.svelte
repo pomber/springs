@@ -1,6 +1,7 @@
 <script>
   import BigChart from "./big-chart.svelte";
   import SmallChart from "./small-chart.svelte";
+  import Border from "./border.svelte";
   import Slider from "./slider.svelte";
   import Spring from "./spring.svelte";
 
@@ -17,6 +18,8 @@
   let m3 = 3;
 
   let resolution = 250;
+  let x0 = 1;
+  let maxt = 6;
 
   $: springs = [
     { k: k1, c: c1, m: m1, color: "blue" },
@@ -24,7 +27,7 @@
     { k: k3, c: c3, m: m3, color: "green" }
   ];
 
-  const multiplier = 1.5;
+  const multiplier = 2;
 
   $: lks = springs.map(s => ({ ...s, k: s.k / multiplier }));
   $: lcs = springs.map(s => ({ ...s, c: s.c / multiplier }));
@@ -54,14 +57,14 @@
     grid-area: 2 / 2 / 5 / 5;
     /* border: 1px solid green; */
   }
-  .right {
+  .right-panel {
     grid-area: 1 / 5 / 6 / 6;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  .left {
+  .left-panel {
     grid-area: 1 / 1 / 6 / 2;
     padding: 10px;
     display: flex;
@@ -93,9 +96,9 @@
 </header>
 <div class="grid">
   <div class="center">
-    <BigChart {springs} {resolution} />
+    <BigChart {springs} {resolution} {maxt} />
   </div>
-  <div class="right">
+  <div class="right-panel">
     Stiffness
     <div class="blue">
       <Slider bind:value={k1} />
@@ -127,27 +130,29 @@
       <Slider bind:value={m3} />
     </div>
   </div>
-  <div class="left">
+  <div class="left-panel">
     Resolution
     <Slider min={10} max={2000} bind:value={resolution} />
+    T
+    <Slider min={1} max={10} bind:value={maxt} />
   </div>
   <div class="top1">
-    <SmallChart springs={lks} {resolution} />
+    <SmallChart springs={lks} {resolution} {maxt} label="- stiffness" />
   </div>
   <div class="top2">
-    <SmallChart springs={lcs} {resolution} />
+    <SmallChart springs={lcs} {resolution} {maxt} label="- damping" />
   </div>
   <div class="top3">
-    <SmallChart springs={lms} {resolution} />
+    <SmallChart springs={lms} {resolution} {maxt} label="- mass" />
   </div>
   <div class="bottom1">
-    <SmallChart springs={mks} {resolution} />
+    <SmallChart springs={mks} {resolution} {maxt} label="+ stiffness" />
   </div>
   <div class="bottom2">
-    <SmallChart springs={mcs} {resolution} />
+    <SmallChart springs={mcs} {resolution} {maxt} label="+ damping" />
   </div>
   <div class="bottom3">
-    <SmallChart springs={mms} {resolution} />
+    <SmallChart springs={mms} {resolution} {maxt} label="+ mass" />
   </div>
 </div>
 <footer />
