@@ -6,7 +6,7 @@
   export let x0 = 1;
   export let maxt = 6;
 
-  const w = 6;
+  const w = 7;
   const h = 1;
 
   $: maxx = Math.max(x0, 1);
@@ -17,13 +17,12 @@
   $: scaleX = h / maxx;
   $: scaleT = w / maxt;
 
-  $: viewbox = `${-0.2} ${-h - 0.2} ${w + 0.4} ${2 * h + 0.4}`;
+  $: viewbox = `${-0.1} ${-h - 0.2} ${w + 0.2} ${2 * h + 0.4}`;
 </script>
 
 <style>
   svg {
     display: block;
-    border-radius: 10px;
   }
   circle {
     fill: #fafafa;

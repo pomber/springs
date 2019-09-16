@@ -35,12 +35,15 @@
     font-size: 12px;
     flex: 1;
   }
-  .container {
+  .content {
     width: 100%;
     display: flex;
   }
   .slider {
-    margin: 5px 0 14px 0;
+    margin-top: 5px;
+  }
+  .container {
+    margin: 5px 0;
   }
   span {
     width: 30px;
@@ -51,7 +54,9 @@
 </style>
 
 <div class="container">
-  <label>{label}</label>
-  <span>{value}</span>
+  <div class="content">
+    <label>{label}</label>
+    <span>{value}</span>
+  </div>
+  <div class="slider" bind:this={element} />
 </div>
-<div class="slider" bind:this={element} />

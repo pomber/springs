@@ -1,7 +1,7 @@
 <script>
   import BigChart from "./big-chart.svelte";
   import SmallChart from "./small-chart.svelte";
-  import Border from "./border.svelte";
+  import GitHub from "./github.svelte";
   import Slider from "./slider.svelte";
   import Spring from "./spring.svelte";
 
@@ -39,7 +39,24 @@
 
 <style>
   h1 {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin: 0;
+    font-size: 72px;
+    text-transform: uppercase;
+    color: #fafafa55;
+    line-height: 63px;
     text-align: center;
+    justify-self: right;
+  }
+  h1 span {
+    color: #fafafa22;
+  }
+  p {
+    color: #fafafa55;
+    text-align: center;
+    /* text-transform: uppercase; */
+    font-size: 14px;
   }
   header,
   footer {
@@ -47,28 +64,37 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: 170px repeat(3, 1fr) 170px;
+    grid-template-rows: 0.666fr repeat(2, 1fr) 0.666fr;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
     max-width: 1200px;
+    /* justify-items: center; */
   }
   .center {
-    grid-area: 2 / 2 / 5 / 5;
+    grid-area: 2 / 2 / 4 / 5;
   }
   .right-panel {
-    grid-area: 1 / 5 / 6 / 6;
-    padding: 20px;
+    grid-area: 1 / 5 / 5 / 6;
+    /* padding: 20px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .left-panel {
-    grid-area: 1 / 1 / 6 / 2;
-    padding: 10px;
+    grid-area: 2 / 1 / 4 / 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-end;
+  }
+  .left-bottom {
+    grid-area: 4 / 1 / 5 / 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    align-self: start;
   }
   .top1 {
     grid-area: 1 / 2 / 2 / 3;
@@ -80,42 +106,28 @@
     grid-area: 1 / 4 / 2 / 5;
   }
   .bottom1 {
-    grid-area: 5 / 2 / 6 / 3;
+    grid-area: 4 / 2 / 5 / 3;
   }
   .bottom2 {
-    grid-area: 5 / 3 / 6 / 4;
+    grid-area: 4 / 3 / 5 / 4;
   }
   .bottom3 {
-    grid-area: 5 / 4 / 6 / 5;
+    grid-area: 4 / 4 / 5 / 5;
   }
   .spring-controls {
-    padding: 10px;
-  }
-  .spring-controls.blue {
-    /* background: radial-gradient(ellipse at center, #27eed320 0%, #27eed310 80%); */
-    /* box-shadow: inset 0px 0px 7px #27eed3; */
-  }
-  .spring-controls.red {
-    /* background: radial-gradient(ellipse at center, #f1993a20 0%, #f1993a10 80%); */
-    /* box-shadow: inset 0px 0px 7px #f1993a; */
-  }
-  .spring-controls.green {
-    /* background: radial-gradient(ellipse at center, #87c33d20 0%, #87c33d10 80%); */
-    /* box-shadow: inset 0px 0px 7px #87c33d; */
+    padding: 0 10px;
+    width: 150px;
   }
 </style>
 
-<header>
-  <h1>Springs</h1>
-</header>
+<header />
 <div class="grid">
   <div class="center">
     <BigChart {springs} {resolution} {maxt} />
   </div>
   <div class="right-panel">
-
     <div class="spring-controls">
-      <Slider min={1} max={10} bind:value={maxt} label="T" />
+      <Slider min={1} max={10} bind:value={maxt} label="max T" />
     </div>
     <div class="spring-controls blue">
       <Slider bind:value={k1} label="Stiffness" />
@@ -132,11 +144,29 @@
       <Slider bind:value={c3} label="Damping" />
       <Slider bind:value={m3} label="Mass" />
     </div>
+    <div class="spring-controls">
+      <Slider
+        min={10}
+        max={2000}
+        bind:value={resolution}
+        label="dots per spring" />
+    </div>
   </div>
   <div class="left-panel">
-    Resolution
-    <Slider min={10} max={2000} bind:value={resolution} />
-    T
+
+    <div>
+      <h1>
+        Spring
+        <br />
+        <span>Editor</span>
+      </h1>
+    </div>
+
+  </div>
+  <div class="left-bottom">
+    <GitHub />
+    <p>by @pomber</p>
+
   </div>
   <div class="top1">
     <SmallChart springs={lks} {resolution} {maxt} label="- stiffness" />

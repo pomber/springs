@@ -18,7 +18,6 @@
 <style>
   svg {
     display: block;
-    padding: 0 2px;
   }
 
   circle {
@@ -34,7 +33,7 @@
   }
 </style>
 
-<svg viewBox="-0.2 -1.2 6.4 2.4" width="100%">
+<svg viewBox="-0.25 -1.2 6.5 2.4" width="100%">
   {#each xs as x}
     {#each ys as y}
       <circle cx={x * scaleT} cy={y} r="0.03" />

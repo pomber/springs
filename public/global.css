@@ -19,6 +19,10 @@ body {
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
+/* svg {
+  background: salmon;
+} */
+
 a {
   color: rgb(0, 100, 200);
   text-decoration: none;
