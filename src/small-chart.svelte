@@ -5,7 +5,6 @@
   export let springs;
   export let resolution;
   export let label;
-  export let x0;
   export let maxt = 6;
 
   const w = 6;
@@ -42,7 +41,7 @@
     {/each}
   {/each}
   <text alignment-baseline="" x="5.2" y="1.1">{label}</text>
-  <Spring {...springs[0]} {resolution} {x0} {maxt} {scaleT} />
-  <Spring {...springs[1]} {resolution} {x0} {maxt} {scaleT} />
-  <Spring {...springs[2]} {resolution} {x0} {maxt} {scaleT} />
+  <Spring {...springs[0]} {resolution} {maxt} {scaleT} />
+  <Spring {...springs[1]} {resolution} {maxt} {scaleT} />
+  <Spring {...springs[2]} {resolution} {maxt} {scaleT} />
 </svg>

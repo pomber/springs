@@ -3,6 +3,7 @@
   export let max = 100;
   export let log = false;
   export let value = 1;
+  export let label = "";
 
   import { onMount } from "svelte";
   import noUiSlider from "nouislider";
@@ -18,6 +19,7 @@
         min,
         max
       }
+      // padding: [Math.ceil(0.15 * (max - min)), 0]
     });
 
     element.noUiSlider.on("update", function() {
@@ -27,20 +29,29 @@
 </script>
 
 <style>
+  label {
+    text-transform: uppercase;
+    color: rgba(250, 250, 250, 0.6);
+    font-size: 12px;
+    flex: 1;
+  }
   .container {
     width: 100%;
     display: flex;
   }
   .slider {
-    flex: 1;
+    margin: 5px 0 14px 0;
   }
   span {
     width: 30px;
     text-align: center;
+    color: rgba(250, 250, 250, 0.6);
+    font-size: 12px;
   }
 </style>
 
 <div class="container">
-  <div class="slider" bind:this={element} />
+  <label>{label}</label>
   <span>{value}</span>
 </div>
+<div class="slider" bind:this={element} />

@@ -6,11 +6,10 @@
   export let m = 2;
   export let color = "red";
   export let resolution;
-  export let x0 = 1;
-  export let scaleX = 1;
   export let maxt = 6;
   export let scaleT = 1;
 
+  const x0 = 1;
   $: ts = Array(resolution + 1)
     .fill(0)
     .map((_, i) => (maxt * 1000 * i) / resolution);
@@ -20,7 +19,7 @@
   const start = 0;
 
   $: spring = newSpring(target, x0, v0, start, k, c, m);
-  $: points = ts.map(t => [(scaleT * t) / 1000, spring(t)[0] * scaleX]);
+  $: points = ts.map(t => [(scaleT * t) / 1000, spring(t)[0]]);
 </script>
 
 <style>

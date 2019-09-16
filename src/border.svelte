@@ -17,22 +17,22 @@
 
   .top {
     top: 0;
-    border-top: 0.5px solid #fafafa40;
+    border-top: 1.5px solid #fafafa40;
   }
 
   .bottom {
     bottom: 0;
-    border-bottom: 0.5px solid #fafafa40;
+    border-bottom: 1.5px solid #fafafa40;
   }
 
   .left {
     left: 0;
-    border-left: 0.5px solid #fafafa40;
+    border-left: 1.5px solid #fafafa40;
   }
 
   .right {
     right: 0;
-    border-right: 0.5px solid #fafafa40;
+    border-right: 1.5px solid #fafafa40;
   }
 </style>
 

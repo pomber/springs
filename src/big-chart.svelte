@@ -37,7 +37,7 @@
       <circle cx={x * scaleT} cy={y * scaleX} r="0.015" />
     {/each}
   {/each}
-  <Spring {...springs[0]} {resolution} {x0} {scaleX} {maxt} {scaleT} />
-  <Spring {...springs[1]} {resolution} {x0} {scaleX} {maxt} {scaleT} />
-  <Spring {...springs[2]} {resolution} {x0} {scaleX} {maxt} {scaleT} />
+  <Spring {...springs[0]} {resolution} {maxt} {scaleT} />
+  <Spring {...springs[1]} {resolution} {maxt} {scaleT} />
+  <Spring {...springs[2]} {resolution} {maxt} {scaleT} />
 </svg>

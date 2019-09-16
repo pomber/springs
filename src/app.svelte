@@ -6,16 +6,16 @@
   import Spring from "./spring.svelte";
 
   let k1 = 16;
-  let c1 = 1;
-  let m1 = 1;
+  let c1 = 20;
+  let m1 = 15;
 
   let k2 = 26;
-  let c2 = 2;
-  let m2 = 2;
+  let c2 = 22;
+  let m2 = 20;
 
   let k3 = 36;
-  let c3 = 3;
-  let m3 = 3;
+  let c3 = 31;
+  let m3 = 33;
 
   let resolution = 250;
   let x0 = 1;
@@ -55,7 +55,6 @@
   }
   .center {
     grid-area: 2 / 2 / 5 / 5;
-    /* border: 1px solid green; */
   }
   .right-panel {
     grid-area: 1 / 5 / 6 / 6;
@@ -89,6 +88,21 @@
   .bottom3 {
     grid-area: 5 / 4 / 6 / 5;
   }
+  .spring-controls {
+    padding: 10px;
+  }
+  .spring-controls.blue {
+    /* background: radial-gradient(ellipse at center, #27eed320 0%, #27eed310 80%); */
+    /* box-shadow: inset 0px 0px 7px #27eed3; */
+  }
+  .spring-controls.red {
+    /* background: radial-gradient(ellipse at center, #f1993a20 0%, #f1993a10 80%); */
+    /* box-shadow: inset 0px 0px 7px #f1993a; */
+  }
+  .spring-controls.green {
+    /* background: radial-gradient(ellipse at center, #87c33d20 0%, #87c33d10 80%); */
+    /* box-shadow: inset 0px 0px 7px #87c33d; */
+  }
 </style>
 
 <header>
@@ -99,42 +113,30 @@
     <BigChart {springs} {resolution} {maxt} />
   </div>
   <div class="right-panel">
-    Stiffness
-    <div class="blue">
-      <Slider bind:value={k1} />
+
+    <div class="spring-controls">
+      <Slider min={1} max={10} bind:value={maxt} label="T" />
     </div>
-    <div class="red">
-      <Slider bind:value={k2} />
+    <div class="spring-controls blue">
+      <Slider bind:value={k1} label="Stiffness" />
+      <Slider bind:value={c1} label="Damping" />
+      <Slider bind:value={m1} label="Mass" />
     </div>
-    <div class="green">
-      <Slider bind:value={k3} />
+    <div class="spring-controls red">
+      <Slider bind:value={k2} label="Stiffness" />
+      <Slider bind:value={c2} label="Damping" />
+      <Slider bind:value={m2} label="Mass" />
     </div>
-    Damping Ratio
-    <div class="blue">
-      <Slider bind:value={c1} />
-    </div>
-    <div class="red">
-      <Slider bind:value={c2} />
-    </div>
-    <div class="green">
-      <Slider bind:value={c3} />
-    </div>
-    Mass
-    <div class="blue">
-      <Slider bind:value={m1} />
-    </div>
-    <div class="red">
-      <Slider bind:value={m2} />
-    </div>
-    <div class="green">
-      <Slider bind:value={m3} />
+    <div class="spring-controls green">
+      <Slider bind:value={k3} label="Stiffness" />
+      <Slider bind:value={c3} label="Damping" />
+      <Slider bind:value={m3} label="Mass" />
     </div>
   </div>
   <div class="left-panel">
     Resolution
     <Slider min={10} max={2000} bind:value={resolution} />
     T
-    <Slider min={1} max={10} bind:value={maxt} />
   </div>
   <div class="top1">
     <SmallChart springs={lks} {resolution} {maxt} label="- stiffness" />
