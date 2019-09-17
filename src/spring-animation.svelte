@@ -1,5 +1,6 @@
 <script>
   import { tweened } from "svelte/motion";
+  import { onMount, onDestroy } from "svelte";
   import { getSpring } from "./spring";
 
   export let springs;
@@ -10,20 +11,36 @@
 
   const t = tweened(0);
 
+  $: show = $t !== 0;
   $: springFns = springs.map(config => getSpring({ ...config, x0: 1, v0: 0 }));
   $: results = springFns.map(fn => fn($t)[0]);
 
-  function run() {
-    isRunning = true;
-    t.set(maxt, { duration: maxt * 1000 }).then(() => {
-      t.set(0, { duration: 0 });
+  function toggle(event) {
+    if (event.code !== "Space") return;
+    if (isRunning) {
+      t.set($t, { duration: 0 });
       isRunning = false;
-    });
+    } else {
+      isRunning = true;
+      t.set(maxt, { duration: (maxt - $t) * 1000 }).then(() => {
+        t.set(0, { duration: 0 });
+        isRunning = false;
+      });
+    }
   }
 
-  function pause() {
-    isRunning = false;
-  }
+  onMount(() => {
+    console.log(
+      "%c%s",
+      "color: #27eed488; background: black; font-size: 24px;",
+      "Hey! press the spacebar to animate"
+    );
+    document.addEventListener("keyup", toggle);
+  });
+
+  onDestroy(() => {
+    document.removeEventListener("keyup", toggle);
+  });
 </script>
 
 <style>
@@ -32,8 +49,9 @@
     fill: #fafafa66;
   }
   text {
-    fill: #fafafa66;
+    fill: #fafafa;
     font-size: 20px;
+    opacity: 0.4 !important;
   }
 
   rect.h {
@@ -44,15 +62,18 @@
     stroke-width: 0.02;
     opacity: 0.15;
     stroke: #27eed4;
+    fill: #27eed4;
   }
   .red {
     stroke-width: 0.02;
     opacity: 0.15;
     stroke: #f1993a;
+    fill: #f1993a;
   }
   .green {
     stroke-width: 0.02;
     opacity: 0.15;
+    fill: #87c33d;
     stroke: #87c33d;
   }
   polygon {
@@ -68,33 +89,21 @@
 </style>
 
 <svg
-  x="6.2"
-  y="-1"
+  x="6.5"
+  y="-1.1"
   viewBox="0 0 100 200"
   width="0.5"
   preserveAspectRatio="xMidYMin">
-  <!-- <rect x="0" y="0" width="100" height="200" class="h" /> -->
-  {#if isRunning}
-    <g on:click={pause}>
-      <rect x="10" y="10" width="15" height="40" />
-      <rect x="30" y="10" width="15" height="40" />
-    </g>
-    <text x="10" y="80">t: {$t}</text>
-    <text x="10" y="100">{results[0]}</text>
-    <text x="10" y="120">{results[1]}</text>
-    <text x="10" y="140">{results[2]}</text>
-  {:else}
-    <g on:click={run}>
-      <polygon stroke-miterlimit="10" points="10,10 40,30 10,50" />
-    </g>
+  {#if show}
+    <text x="10" y="30">t: {$t}</text>
+    <text x="10" y="60" class={springs[0].color}>{results[0]}</text>
+    <text x="10" y="90" class={springs[1].color}>{results[1]}</text>
+    <text x="10" y="120" class={springs[2].color}>{results[2]}</text>
   {/if}
-  <g>
-    <rect x="55" y="10" width="40" height="40" />
-  </g>
 
 </svg>
 
-{#if isRunning}
+{#if show}
   <polygon
     points={`${$t * scaleT},1 ${$t * scaleT - 0.05},1.1 ${$t * scaleT + 0.05},1.1`} />
   {#each results as y, i}

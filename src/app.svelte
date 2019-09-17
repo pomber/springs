@@ -5,17 +5,17 @@
   import Slider from "./slider.svelte";
   import Spring from "./spring.svelte";
 
-  let k1 = 16;
-  let c1 = 20;
-  let m1 = 15;
+  let k1 = 1;
+  let c1 = 1;
+  let m1 = 1;
 
-  let k2 = 26;
-  let c2 = 22;
-  let m2 = 20;
+  let k2 = 40;
+  let c2 = 1;
+  let m2 = 3;
 
-  let k3 = 36;
-  let c3 = 31;
-  let m3 = 33;
+  let k3 = 64;
+  let c3 = 12;
+  let m3 = 0.5;
 
   let resolution = 250;
   let x0 = 1;
@@ -127,7 +127,7 @@
   </div>
   <div class="right-panel">
     <div class="spring-controls">
-      <Slider min={1} max={10} bind:value={maxt} label="max T" />
+      <Slider range={{ min: 1, max: 10 }} bind:value={maxt} label="max T" />
     </div>
     <div class="spring-controls blue">
       <Slider bind:value={k1} label="Stiffness" />
@@ -146,8 +146,8 @@
     </div>
     <div class="spring-controls">
       <Slider
-        min={10}
-        max={2000}
+        range={{ min: 10, max: 1200 }}
+        step={1}
         bind:value={resolution}
         label="dots per spring" />
     </div>

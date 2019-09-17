@@ -4,6 +4,19 @@
   export let log = false;
   export let value = 1;
   export let label = "";
+  export let step = 0;
+  export let range = {
+    min: 0,
+    "33%": 1,
+    "41%": 2,
+    "50%": 4,
+    "58%": 8,
+    "66%": 16,
+    "75%": 32,
+    "83%": 64,
+    "92%": 128,
+    max: 256
+  };
 
   import { onMount } from "svelte";
   import noUiSlider from "nouislider";
@@ -14,12 +27,8 @@
     noUiSlider.create(element, {
       start: value,
       connect: [true, false],
-      step: 1,
-      range: {
-        min,
-        max
-      }
-      // padding: [Math.ceil(0.15 * (max - min)), 0]
+      step,
+      range
     });
 
     element.noUiSlider.on("update", function() {
