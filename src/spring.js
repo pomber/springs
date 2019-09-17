@@ -1,4 +1,4 @@
-const { round, sqrt, exp, sin, cos, pow } = Math;
+const { sqrt, exp, sin, cos } = Math;
 
 export function newSpring(target, x0, v0, start, k, c, m) {
   const d = target - x0;
@@ -10,7 +10,7 @@ export function newSpring(target, x0, v0, start, k, c, m) {
   };
 }
 
-function getSpring({ k, c, m, x0, v0 }) {
+export function getSpring({ k, c, m, x0, v0 }) {
   const radicand = c * c - 4 * k * m;
   if (radicand > 0) {
     const rp = (-c + sqrt(radicand)) / (2 * m);
@@ -39,9 +39,4 @@ function getSpring({ k, c, m, x0, v0 }) {
       (b + a * r + b * r * t) * exp(r * t)
     ];
   }
-}
-
-function roundTo(x, decimals) {
-  const p = pow(10, decimals);
-  return round(x * p) / p;
 }

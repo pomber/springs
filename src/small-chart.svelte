@@ -39,7 +39,7 @@
       <circle cx={x * scaleT} cy={y} r="0.03" />
     {/each}
   {/each}
-  <text alignment-baseline="" x="5.2" y="1.1">{label}</text>
+  <text alignment="baseline" x="5.2" y="1.1">{label}</text>
   <Spring {...springs[0]} {resolution} {maxt} {scaleT} />
   <Spring {...springs[1]} {resolution} {maxt} {scaleT} />
   <Spring {...springs[2]} {resolution} {maxt} {scaleT} />
