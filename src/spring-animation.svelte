@@ -29,6 +29,12 @@
     }
   }
 
+  const toString = x =>
+    x.toLocaleString("fullwide", {
+      useGrouping: false,
+      maximumFractionDigits: 8
+    });
+
   onMount(() => {
     console.log(
       "%c%s",
@@ -95,10 +101,10 @@
   width="0.5"
   preserveAspectRatio="xMidYMin">
   {#if show}
-    <text x="10" y="30">t: {$t}</text>
-    <text x="10" y="60" class={springs[0].color}>{results[0]}</text>
-    <text x="10" y="90" class={springs[1].color}>{results[1]}</text>
-    <text x="10" y="120" class={springs[2].color}>{results[2]}</text>
+    <text x="10" y="30">t: {toString($t)}</text>
+    <text x="10" y="60" class={springs[0].color}>{toString(results[0])}</text>
+    <text x="10" y="90" class={springs[1].color}>{toString(results[1])}</text>
+    <text x="10" y="120" class={springs[2].color}>{toString(results[2])}</text>
   {/if}
 
 </svg>

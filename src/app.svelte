@@ -4,6 +4,7 @@
   import GitHub from "./github.svelte";
   import Slider from "./slider.svelte";
   import Spring from "./spring.svelte";
+  import Header from "./header.svelte";
 
   let k1 = 1;
   let c1 = 1;
@@ -38,17 +39,42 @@
 </script>
 
 <style>
+  :root {
+    --main-bg-color: brown;
+    --left-col-width: 82px;
+    --right-col-width: 110px;
+    --hide-mobile-display: none;
+    --header-font-size: 44px;
+    --header-line-height: 41px;
+  }
+
+  @media only screen and (min-width: 950px) {
+    :root {
+      --left-col-width: 126px;
+      --right-col-width: 160px;
+      --hide-mobile-display: block;
+      --header-font-size: 72px;
+      --header-line-height: 63px;
+    }
+  }
+
   h1 {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     margin: 0;
-    font-size: 72px;
+    font-size: var(--header-font-size);
+    line-height: var(--header-line-height);
+
     text-transform: uppercase;
     color: #fafafa55;
-    line-height: 63px;
     text-align: center;
     justify-self: right;
   }
+
+  .hide-mobile {
+    display: var(--hide-mobile-display);
+  }
+
   h1 span {
     color: #fafafa22;
   }
@@ -56,33 +82,34 @@
     color: #fafafa55;
     text-align: center;
     /* text-transform: uppercase; */
-    font-size: 14px;
-  }
-  header,
-  footer {
-    flex: 1;
+    font-size: 13px;
   }
   .grid {
     display: grid;
-    grid-template-columns: 170px repeat(3, 1fr) 170px;
+    grid-template-columns: var(--left-col-width) repeat(3, 1fr) var(
+        --right-col-width
+      );
     grid-template-rows: 0.666fr repeat(2, 1fr) 0.666fr;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
     max-width: 1200px;
+    min-width: 710px;
     /* justify-items: center; */
   }
   .center {
     grid-area: 2 / 2 / 4 / 5;
+    min-width: 498px;
   }
   .right-panel {
     grid-area: 1 / 5 / 5 / 6;
     /* padding: 20px; */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
+    /* background: salmon; */
   }
   .left-panel {
-    grid-area: 2 / 1 / 4 / 2;
+    grid-area: 1 / 1 / 5 / 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -96,95 +123,81 @@
     justify-content: flex-end;
     align-self: start;
   }
-  .top1 {
-    grid-area: 1 / 2 / 2 / 3;
-  }
-  .top2 {
-    grid-area: 1 / 3 / 2 / 4;
-  }
-  .top3 {
-    grid-area: 1 / 4 / 2 / 5;
-  }
-  .bottom1 {
-    grid-area: 4 / 2 / 5 / 3;
-  }
-  .bottom2 {
-    grid-area: 4 / 3 / 5 / 4;
-  }
-  .bottom3 {
-    grid-area: 4 / 4 / 5 / 5;
-  }
   .spring-controls {
     padding: 0 10px;
-    width: 150px;
+    width: 100%;
+    box-sizing: border-box;
   }
 </style>
 
-<header />
-<div class="grid">
-  <div class="center">
-    <BigChart {springs} {resolution} {maxt} />
-  </div>
-  <div class="right-panel">
-    <div class="spring-controls">
-      <Slider range={{ min: 1, max: 10 }} bind:value={maxt} label="max T" />
-    </div>
-    <div class="spring-controls blue">
-      <Slider bind:value={k1} label="Stiffness" />
-      <Slider bind:value={c1} label="Damping" />
-      <Slider bind:value={m1} label="Mass" />
-    </div>
-    <div class="spring-controls red">
-      <Slider bind:value={k2} label="Stiffness" />
-      <Slider bind:value={c2} label="Damping" />
-      <Slider bind:value={m2} label="Mass" />
-    </div>
-    <div class="spring-controls green">
-      <Slider bind:value={k3} label="Stiffness" />
-      <Slider bind:value={c3} label="Damping" />
-      <Slider bind:value={m3} label="Mass" />
-    </div>
-    <div class="spring-controls">
-      <Slider
-        range={{ min: 10, max: 1200 }}
-        step={1}
-        bind:value={resolution}
-        label="dots per spring" />
-    </div>
-  </div>
-  <div class="left-panel">
+<main>
+  <div class="grid">
 
-    <div>
-      <h1>
-        Spring
-        <br />
-        <span>Editor</span>
-      </h1>
+    <div class="center">
+      <BigChart {springs} {resolution} {maxt} />
     </div>
 
-  </div>
-  <div class="left-bottom">
-    <GitHub />
-    <p>by @pomber</p>
+    <div class="right-panel">
+      <div class="spring-controls hide-mobile">
+        <Slider range={{ min: 1, max: 10 }} bind:value={maxt} label="max T" />
+      </div>
+      <div class="spring-controls blue">
+        <Slider bind:value={k1} label="Stiffness" />
+        <Slider bind:value={c1} label="Damping" />
+        <Slider bind:value={m1} label="Mass" />
+      </div>
+      <div class="spring-controls red">
+        <Slider bind:value={k2} label="Stiffness" />
+        <Slider bind:value={c2} label="Damping" />
+        <Slider bind:value={m2} label="Mass" />
+      </div>
+      <div class="spring-controls green">
+        <Slider bind:value={k3} label="Stiffness" />
+        <Slider bind:value={c3} label="Damping" />
+        <Slider bind:value={m3} label="Mass" />
+      </div>
+      <div class="spring-controls hide-mobile">
+        <Slider
+          range={{ min: 10, max: 1200 }}
+          step={1}
+          bind:value={resolution}
+          label="dots per spring" />
+      </div>
+    </div>
+
+    <div class="left-panel">
+      <div>
+        <h1>
+          Spring
+          <br />
+          <span>Editor</span>
+        </h1>
+      </div>
+    </div>
+    <div class="left-bottom">
+      <!-- <GitHub /> -->
+      <p>by @pomber</p>
+      <!-- <Header /> -->
+    </div>
+
+    <div style="grid-area: 1 / 2 / 2 / 3">
+      <SmallChart springs={lks} {resolution} {maxt} label="- stiffness" />
+    </div>
+    <div style="grid-area: 1 / 3 / 2 / 4">
+      <SmallChart springs={lcs} {resolution} {maxt} label="- damping" />
+    </div>
+    <div style="grid-area: 1 / 4 / 2 / 5">
+      <SmallChart springs={lms} {resolution} {maxt} label="- mass" />
+    </div>
+    <div style="grid-area: 4 / 2 / 5 / 3">
+      <SmallChart springs={mks} {resolution} {maxt} label="+ stiffness" />
+    </div>
+    <div style="grid-area: 4 / 3 / 5 / 4">
+      <SmallChart springs={mcs} {resolution} {maxt} label="+ damping" />
+    </div>
+    <div style="grid-area: 4 / 4 / 5 / 5">
+      <SmallChart springs={mms} {resolution} {maxt} label="+ mass" />
+    </div>
 
   </div>
-  <div class="top1">
-    <SmallChart springs={lks} {resolution} {maxt} label="- stiffness" />
-  </div>
-  <div class="top2">
-    <SmallChart springs={lcs} {resolution} {maxt} label="- damping" />
-  </div>
-  <div class="top3">
-    <SmallChart springs={lms} {resolution} {maxt} label="- mass" />
-  </div>
-  <div class="bottom1">
-    <SmallChart springs={mks} {resolution} {maxt} label="+ stiffness" />
-  </div>
-  <div class="bottom2">
-    <SmallChart springs={mcs} {resolution} {maxt} label="+ damping" />
-  </div>
-  <div class="bottom3">
-    <SmallChart springs={mms} {resolution} {maxt} label="+ mass" />
-  </div>
-</div>
-<footer />
+</main>
