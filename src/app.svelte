@@ -181,22 +181,59 @@
     </div>
 
     <div style="grid-area: 1 / 2 / 2 / 3">
-      <SmallChart springs={lks} {resolution} {maxt} label="- stiffness" />
+      <SmallChart
+        springs={lks}
+        {resolution}
+        {maxt}
+        prefix="less"
+        label="stiffness"
+        on:click={e => (springs = lks)} />
+
     </div>
     <div style="grid-area: 1 / 3 / 2 / 4">
-      <SmallChart springs={lcs} {resolution} {maxt} label="- damping" />
+      <SmallChart
+        springs={lcs}
+        {resolution}
+        {maxt}
+        prefix="less"
+        label="damping"
+        on:click={e => (springs = lcs)} />
     </div>
     <div style="grid-area: 1 / 4 / 2 / 5">
-      <SmallChart springs={lms} {resolution} {maxt} label="- mass" />
+      <SmallChart
+        springs={lms}
+        {resolution}
+        {maxt}
+        prefix="less"
+        label="mass"
+        on:click={e => (springs = lms)} />
     </div>
     <div style="grid-area: 4 / 2 / 5 / 3">
-      <SmallChart springs={mks} {resolution} {maxt} label="+ stiffness" />
+      <SmallChart
+        springs={mks}
+        {resolution}
+        {maxt}
+        prefix="more"
+        label="stiffness"
+        on:click={e => (springs = mks)} />
     </div>
     <div style="grid-area: 4 / 3 / 5 / 4">
-      <SmallChart springs={mcs} {resolution} {maxt} label="+ damping" />
+      <SmallChart
+        springs={mcs}
+        {resolution}
+        {maxt}
+        prefix="more"
+        label="damping"
+        on:click={e => (springs = mcs)} />
     </div>
     <div style="grid-area: 4 / 4 / 5 / 5">
-      <SmallChart springs={mms} {resolution} {maxt} label="+ mass" />
+      <SmallChart
+        springs={mms}
+        {resolution}
+        {maxt}
+        prefix="more"
+        label="mass"
+        on:click={e => (springs = mms)} />
     </div>
 
   </div>

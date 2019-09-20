@@ -24,16 +24,7 @@
 
 <style>
   circle {
-    opacity: 0.4;
-  }
-  .blue {
-    fill: #27eed4;
-  }
-  .red {
-    fill: #f1993a;
-  }
-  .green {
-    fill: #87c33d;
+    fill: var(--color-06);
   }
 </style>
 
