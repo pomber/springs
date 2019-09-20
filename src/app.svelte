@@ -1,7 +1,6 @@
 <script>
   import BigChart from "./big-chart.svelte";
   import SmallChart from "./small-chart.svelte";
-  import GitHub from "./github.svelte";
   import Slider from "./slider.svelte";
   import Spring from "./spring.svelte";
   import Header from "./header.svelte";
@@ -40,12 +39,9 @@
 
 <style>
   :root {
-    --main-bg-color: brown;
     --left-col-width: 82px;
     --right-col-width: 110px;
     --hide-mobile-display: none;
-    --header-font-size: 44px;
-    --header-line-height: 41px;
   }
 
   @media only screen and (min-width: 950px) {
@@ -53,36 +49,11 @@
       --left-col-width: 126px;
       --right-col-width: 160px;
       --hide-mobile-display: block;
-      --header-font-size: 72px;
-      --header-line-height: 63px;
     }
-  }
-
-  h1 {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    margin: 0;
-    font-size: var(--header-font-size);
-    line-height: var(--header-line-height);
-
-    text-transform: uppercase;
-    color: #fafafa55;
-    text-align: center;
-    justify-self: right;
   }
 
   .hide-mobile {
     display: var(--hide-mobile-display);
-  }
-
-  h1 span {
-    color: #fafafa22;
-  }
-  p {
-    color: #fafafa55;
-    text-align: center;
-    /* text-transform: uppercase; */
-    font-size: 13px;
   }
   .grid {
     display: grid;
@@ -107,21 +78,6 @@
     flex-direction: column;
     justify-content: space-around;
     /* background: salmon; */
-  }
-  .left-panel {
-    grid-area: 1 / 1 / 5 / 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-  }
-  .left-bottom {
-    grid-area: 4 / 1 / 5 / 2;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    align-self: start;
   }
   .spring-controls {
     padding: 0 10px;
@@ -165,19 +121,8 @@
       </div>
     </div>
 
-    <div class="left-panel">
-      <div>
-        <h1>
-          Spring
-          <br />
-          <span>Editor</span>
-        </h1>
-      </div>
-    </div>
-    <div class="left-bottom">
-      <!-- <GitHub /> -->
-      <p>by @pomber</p>
-      <!-- <Header /> -->
+    <div style="grid-area: 1 / 1 / 5 / 2">
+      <Header />
     </div>
 
     <div style="grid-area: 1 / 2 / 2 / 3">
