@@ -139,7 +139,7 @@
 
     <div class="right-panel">
       <div class="spring-controls hide-mobile">
-        <Slider range={{ min: 1, max: 10 }} bind:value={maxt} label="max T" />
+        <Slider range={{ min: 1, max: 10 }} bind:value={maxt} label="seconds" />
       </div>
       <div class="spring-controls blue">
         <Slider bind:value={k1} label="Stiffness" />
