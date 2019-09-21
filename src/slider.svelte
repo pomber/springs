@@ -40,13 +40,19 @@
 <style>
   label {
     text-transform: uppercase;
-    color: rgba(250, 250, 250, 0.6);
-    font-size: 12px;
     flex: 1;
+    color: rgba(250, 250, 250, 0.4);
   }
   .content {
     width: 100%;
+    font-size: 11px;
     display: flex;
+  }
+
+  @media only screen and (min-width: 950px) {
+    .content {
+      font-size: 12px;
+    }
   }
   .slider {
     margin-top: 5px;
@@ -55,17 +61,17 @@
     margin: 5px 0;
   }
   span {
-    width: 30px;
-    text-align: center;
-    color: rgba(250, 250, 250, 0.6);
-    font-size: 12px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    user-select: text;
+    color: rgba(250, 250, 250, 0.5);
   }
 </style>
 
 <div class="container">
   <div class="content">
     <label>{label}</label>
-    <span>{value}</span>
+    <span>{step === 1 ? value : value.toFixed(2)}</span>
   </div>
   <div class="slider" bind:this={element} />
 </div>
