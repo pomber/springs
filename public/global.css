@@ -5,6 +5,10 @@ body {
   height: 100%;
 }
 
+* {
+  user-select: none;
+}
+
 body {
   background: #01050a;
   background: radial-gradient(ellipse at center, #121220 0%, #01050a 50%);

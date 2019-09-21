@@ -5,26 +5,14 @@
   import Spring from "./spring.svelte";
   import Header from "./header.svelte";
 
-  let k1 = 1;
-  let c1 = 1;
-  let m1 = 1;
-
-  let k2 = 40;
-  let c2 = 1;
-  let m2 = 3;
-
-  let k3 = 64;
-  let c3 = 12;
-  let m3 = 0.5;
-
-  let resolution = 250;
+  let resolution = 400;
   let x0 = 1;
   let maxt = 6;
 
   $: springs = [
-    { k: k1, c: c1, m: m1, color: "blue" },
-    { k: k2, c: c2, m: m2, color: "red" },
-    { k: k3, c: c3, m: m3, color: "green" }
+    { k: 170, c: 26, m: 1, color: "blue" },
+    { k: 90, c: 2.5, m: 2.5, color: "red" },
+    { k: 3, c: 10, m: 0.5, color: "green" }
   ];
 
   const multiplier = 2;
@@ -98,19 +86,19 @@
         <Slider range={{ min: 1, max: 10 }} bind:value={maxt} label="seconds" />
       </div>
       <div class="spring-controls blue">
-        <Slider bind:value={k1} label="Stiffness" />
-        <Slider bind:value={c1} label="Damping" />
-        <Slider bind:value={m1} label="Mass" />
+        <Slider bind:value={springs[0].k} label="Stiffness" />
+        <Slider bind:value={springs[0].c} label="Damping" />
+        <Slider bind:value={springs[0].m} label="Mass" />
       </div>
       <div class="spring-controls red">
-        <Slider bind:value={k2} label="Stiffness" />
-        <Slider bind:value={c2} label="Damping" />
-        <Slider bind:value={m2} label="Mass" />
+        <Slider bind:value={springs[1].k} label="Stiffness" />
+        <Slider bind:value={springs[1].c} label="Damping" />
+        <Slider bind:value={springs[1].m} label="Mass" />
       </div>
       <div class="spring-controls green">
-        <Slider bind:value={k3} label="Stiffness" />
-        <Slider bind:value={c3} label="Damping" />
-        <Slider bind:value={m3} label="Mass" />
+        <Slider bind:value={springs[2].k} label="Stiffness" />
+        <Slider bind:value={springs[2].c} label="Damping" />
+        <Slider bind:value={springs[2].m} label="Mass" />
       </div>
       <div class="spring-controls hide-mobile">
         <Slider

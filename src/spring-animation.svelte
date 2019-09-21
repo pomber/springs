@@ -50,8 +50,7 @@
 </script>
 
 <style>
-  polygon,
-  rect {
+  polygon {
     fill: #fafafa66;
   }
   text {
@@ -60,10 +59,6 @@
     opacity: 0.4 !important;
   }
 
-  rect.h {
-    fill: none;
-    stroke: aquamarine;
-  }
   .blue {
     stroke-width: 0.02;
     opacity: 0.15;
