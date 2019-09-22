@@ -2,6 +2,7 @@ html,
 body {
   position: relative;
   width: 100%;
+  min-width: 720px;
   height: 100%;
 }
 
@@ -21,19 +22,6 @@ body {
   justify-content: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-}
-
-@media screen and (min-width: 320px) and (max-width: 767px) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    height: 100vw;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
 }
 
 /* svg {

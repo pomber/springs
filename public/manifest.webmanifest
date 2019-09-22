@@ -1,0 +1,10 @@
+{
+  "name": "Spring Editor",
+  "short_name": "Springs",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#01050a",
+  "theme_color": "#01050a",
+  "description": "Spring editor."
+}
