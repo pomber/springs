@@ -23,6 +23,19 @@ body {
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
 /* svg {
   background: salmon;
 } */
@@ -40,6 +53,7 @@ body {
   height: calc(100% + 10px);
   position: absolute;
   top: -5px;
+  overflow: hidden;
 }
 
 .noUi-base:hover {

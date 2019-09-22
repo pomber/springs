@@ -18,7 +18,7 @@
     max: 256
   };
 
-  import { onMount } from "svelte";
+  import { onMount, afterUpdate } from "svelte";
   import noUiSlider from "nouislider";
 
   let element;
@@ -34,6 +34,10 @@
     element.noUiSlider.on("update", function() {
       value = +element.noUiSlider.get();
     });
+  });
+
+  afterUpdate(() => {
+    element.noUiSlider.set(value);
   });
 </script>
 
