@@ -23,6 +23,10 @@
     cursor: pointer;
   }
 
+  svg:hover {
+    opacity: 1;
+  }
+
   circle {
     fill: var(--color-01);
   }
