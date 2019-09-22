@@ -31,7 +31,6 @@
     --right-col-width: 110px;
     --hide-mobile-display: none;
   }
-
   @media only screen and (min-width: 950px) {
     :root {
       --left-col-width: 126px;
@@ -53,7 +52,6 @@
     grid-row-gap: 10px;
     max-width: 1200px;
     min-width: 710px;
-    /* justify-items: center; */
   }
   .center {
     grid-area: 2 / 2 / 4 / 5;
@@ -61,11 +59,9 @@
   }
   .right-panel {
     grid-area: 1 / 5 / 5 / 6;
-    /* padding: 20px; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    /* background: salmon; */
   }
   .spring-controls {
     padding: 0 10px;
@@ -125,7 +121,6 @@
         prefix="less"
         label="stiffness"
         on:click={e => (springs = lks)} />
-
     </div>
     <div style="grid-area: 1 / 3 / 2 / 4">
       <SmallChart

@@ -1,13 +1,10 @@
 <script>
   import { range } from "./range";
-  import GitHub from "./github.svelte";
-
   const w = 1.5;
-
   const xs = range(-46, 46, 18);
   const ys = range(-225, 225, 18);
-  const rects = [];
-  xs.forEach(cx => ys.forEach(cy => rects.push({ cx, cy, r: w })));
+  const circles = [];
+  xs.forEach(cx => ys.forEach(cy => circles.push({ cx, cy, r: w })));
 </script>
 
 <style>
@@ -31,22 +28,19 @@
     margin: 0;
     font-size: var(--title-font-size);
     line-height: var(--title-line-height);
-
     text-transform: uppercase;
-    color: #fafafa55;
     text-align: center;
     justify-self: right;
+    color: var(--color-04);
   }
-
   h1 span {
-    color: #fafafa22;
+    color: var(--color-02);
   }
   p {
-    color: var(--color-02);
+    color: var(--color-03);
     text-align: center;
     font-size: var(--subtitle-font-size);
   }
-
   .container {
     position: relative;
     height: 100%;
@@ -80,10 +74,9 @@
 
 <div class="container">
   <svg viewBox="-50 -50 100 100">
-    <!-- <rect x="-15" y="-15" height="30" width="30" /> -->
-    {#each rects as rect}
+    {#each circles as circle}
       <circle
-        {...rect}
+        {...circle}
         class="point"
         class:red={Math.random() < 0.5}
         class:blue={Math.random() < 0.4}
@@ -105,5 +98,4 @@
       <a href="https://twitter.com/pomber">@pomber</a>
     </p>
   </div>
-
 </div>

@@ -1,6 +1,5 @@
 <script>
   import Spring from "./spring.svelte";
-  import Border from "./border.svelte";
   import { range } from "./range";
   export let springs;
   export let resolution;
@@ -22,18 +21,15 @@
     opacity: 0.8;
     cursor: pointer;
   }
-
   svg:hover {
     opacity: 1;
   }
-
   circle {
     fill: var(--color-01);
   }
   text {
     fill: var(--color-06);
     font-size: 0.4px;
-    /* transform: translateX(-30%); */
     text-transform: uppercase;
     text-anchor: end;
   }

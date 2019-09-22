@@ -1,4 +1,7 @@
 <script>
+  import { onMount, afterUpdate } from "svelte";
+  import noUiSlider from "nouislider";
+
   export let min = 0;
   export let max = 100;
   export let log = false;
@@ -17,9 +20,6 @@
     "92%": 128,
     max: 256
   };
-
-  import { onMount, afterUpdate } from "svelte";
-  import noUiSlider from "nouislider";
 
   let element;
 
@@ -52,7 +52,6 @@
     font-size: 11px;
     display: flex;
   }
-
   @media only screen and (min-width: 950px) {
     .content {
       font-size: 12px;

@@ -1,6 +1,6 @@
 <script>
-  import Spring from "./spring.svelte";
   import { range } from "./range";
+  import Spring from "./spring.svelte";
   import SpringAnimation from "./spring-animation.svelte";
 
   export let springs;
@@ -13,12 +13,9 @@
 
   $: maxx = Math.max(x0, 1);
   $: ys = range(-maxx, maxx, 0.25);
-
   $: xs = range(0, maxt, 0.25);
-  const dc = 0.03;
   $: scaleX = h / maxx;
   $: scaleT = w / maxt;
-
   $: viewbox = `${-0.1} ${-h - 0.2} ${w + 0.2} ${2 * h + 0.4}`;
 </script>
 
@@ -49,6 +46,7 @@
   {/each}
   <line x1="0" y1="1.1" x2={w} y2="1.1" />
   <text x={w} y="1.1" dx="-0.02" dy="-0.02">Seconds</text>
+
   {#each xs as x}
     {#if Number.isInteger(x)}
       <line x1={x * scaleT} y1="1.1" x2={x * scaleT} y2="1.05" />
